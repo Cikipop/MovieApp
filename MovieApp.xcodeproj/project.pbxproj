@@ -1,0 +1,633 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D339CB1D29031EAF0015DE32 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D339CB1C29031EAF0015DE32 /* Kingfisher */; };
+		D339CB20290322EE0015DE32 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = D339CB1F290322EE0015DE32 /* Cosmos */; };
+		D339CB23290452E10015DE32 /* MovieDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339CB21290452E10015DE32 /* MovieDescriptionCell.swift */; };
+		D339CB24290452E10015DE32 /* MovieDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D339CB22290452E10015DE32 /* MovieDescriptionCell.xib */; };
+		D339CB2D290945250015DE32 /* CastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339CB2B290945250015DE32 /* CastCell.swift */; };
+		D339CB2E290945250015DE32 /* CastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D339CB2C290945250015DE32 /* CastCell.xib */; };
+		D339CB31290945D70015DE32 /* CastnMoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339CB2F290945D70015DE32 /* CastnMoviesCollectionViewCell.swift */; };
+		D339CB32290945D70015DE32 /* CastnMoviesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D339CB30290945D70015DE32 /* CastnMoviesCollectionViewCell.xib */; };
+		D339CB35290BFF0D0015DE32 /* RecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339CB33290BFF0D0015DE32 /* RecommendedCell.swift */; };
+		D339CB36290BFF0D0015DE32 /* RecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D339CB34290BFF0D0015DE32 /* RecommendedCell.xib */; };
+		D339CB382912D3220015DE32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339CB372912D3220015DE32 /* Extensions.swift */; };
+		D339CB3A291D0B060015DE32 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D339CB39291D0B060015DE32 /* AuthViewModel.swift */; };
+		D36992E128C5111600A6E68E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36992E028C5111600A6E68E /* AppDelegate.swift */; };
+		D36992E328C5111600A6E68E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36992E228C5111600A6E68E /* SceneDelegate.swift */; };
+		D36992E528C5111600A6E68E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36992E428C5111600A6E68E /* WelcomeViewController.swift */; };
+		D36992E828C5111600A6E68E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D36992E628C5111600A6E68E /* Main.storyboard */; };
+		D36992EB28C5111600A6E68E /* MovieApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D36992E928C5111600A6E68E /* MovieApp.xcdatamodeld */; };
+		D36992F028C5111700A6E68E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D36992EE28C5111700A6E68E /* LaunchScreen.storyboard */; };
+		D36992FF28C51E6400A6E68E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36992FE28C51E6400A6E68E /* RegisterViewController.swift */; };
+		D369930128C51F6100A6E68E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369930028C51F6100A6E68E /* LoginViewController.swift */; };
+		D369930328C523CB00A6E68E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D369930228C523CB00A6E68E /* Assets.xcassets */; };
+		D369930528C5D24D00A6E68E /* MoviesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369930428C5D24D00A6E68E /* MoviesTabViewController.swift */; };
+		D36AA89128D1D5BB0037A04E /* SearchTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA89028D1D5BB0037A04E /* SearchTabViewController.swift */; };
+		D36AA89328D1D5D40037A04E /* AccountTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA89228D1D5D40037A04E /* AccountTabViewController.swift */; };
+		D36AA89528E4F4CA0037A04E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA89428E4F4CA0037A04E /* Constants.swift */; };
+		D36AA89728E4F7160037A04E /* FetchDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA89628E4F7160037A04E /* FetchDataViewModel.swift */; };
+		D36AA89928E84D5F0037A04E /* MovieDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA89828E84D5F0037A04E /* MovieDataModel.swift */; };
+		D36AA8A028E8941F0037A04E /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA89E28E8941F0037A04E /* MyCollectionViewCell.swift */; };
+		D36AA8A128E8941F0037A04E /* MyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36AA89F28E8941F0037A04E /* MyCollectionViewCell.xib */; };
+		D36AA8A628E897990037A04E /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA8A428E897990037A04E /* MyTableViewCell.swift */; };
+		D36AA8A728E897990037A04E /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36AA8A528E897990037A04E /* MyTableViewCell.xib */; };
+		D36AA8AA28E897B30037A04E /* TopCarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AA8A828E897B30037A04E /* TopCarouselTableViewCell.swift */; };
+		D36AA8AB28E897B30037A04E /* TopCarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36AA8A928E897B30037A04E /* TopCarouselTableViewCell.xib */; };
+		D36B4F7328EAE2FF003447AD /* MidCarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B4F7128EAE2FF003447AD /* MidCarouselTableViewCell.swift */; };
+		D36B4F7428EAE2FF003447AD /* MidCarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36B4F7228EAE2FF003447AD /* MidCarouselTableViewCell.xib */; };
+		D37D874E28CCFF9600C72225 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D37D874D28CCFF9600C72225 /* GoogleService-Info.plist */; };
+		D37D875128CD02BC00C72225 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D37D875028CD02BC00C72225 /* FirebaseAuth */; };
+		D37D875328CD02BC00C72225 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D37D875228CD02BC00C72225 /* FirebaseFirestore */; };
+		D37DA6FC29028D6600618796 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA6FB29028D6600618796 /* MovieDetailViewController.swift */; };
+		D37DA6FE2902B40900618796 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA6FD2902B40900618796 /* Protocols.swift */; };
+		D37DA727290316ED00618796 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA725290316ED00618796 /* InfoTableViewCell.swift */; };
+		D37DA728290316ED00618796 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37DA726290316ED00618796 /* InfoTableViewCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D339CB21290452E10015DE32 /* MovieDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDescriptionCell.swift; sourceTree = "<group>"; };
+		D339CB22290452E10015DE32 /* MovieDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDescriptionCell.xib; sourceTree = "<group>"; };
+		D339CB2B290945250015DE32 /* CastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCell.swift; sourceTree = "<group>"; };
+		D339CB2C290945250015DE32 /* CastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastCell.xib; sourceTree = "<group>"; };
+		D339CB2F290945D70015DE32 /* CastnMoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastnMoviesCollectionViewCell.swift; sourceTree = "<group>"; };
+		D339CB30290945D70015DE32 /* CastnMoviesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastnMoviesCollectionViewCell.xib; sourceTree = "<group>"; };
+		D339CB33290BFF0D0015DE32 /* RecommendedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedCell.swift; sourceTree = "<group>"; };
+		D339CB34290BFF0D0015DE32 /* RecommendedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendedCell.xib; sourceTree = "<group>"; };
+		D339CB372912D3220015DE32 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D339CB39291D0B060015DE32 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		D36992DD28C5111600A6E68E /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D36992E028C5111600A6E68E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D36992E228C5111600A6E68E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D36992E428C5111600A6E68E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		D36992E728C5111600A6E68E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D36992EA28C5111600A6E68E /* MovieApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieApp.xcdatamodel; sourceTree = "<group>"; };
+		D36992EF28C5111700A6E68E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D36992F128C5111700A6E68E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D36992FE28C51E6400A6E68E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D369930028C51F6100A6E68E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D369930228C523CB00A6E68E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../Marvel Heroes/Marvel Heroes/Assets.xcassets"; sourceTree = "<group>"; };
+		D369930428C5D24D00A6E68E /* MoviesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTabViewController.swift; sourceTree = "<group>"; };
+		D36AA89028D1D5BB0037A04E /* SearchTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabViewController.swift; sourceTree = "<group>"; };
+		D36AA89228D1D5D40037A04E /* AccountTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTabViewController.swift; sourceTree = "<group>"; };
+		D36AA89428E4F4CA0037A04E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D36AA89628E4F7160037A04E /* FetchDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataViewModel.swift; sourceTree = "<group>"; };
+		D36AA89828E84D5F0037A04E /* MovieDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataModel.swift; sourceTree = "<group>"; };
+		D36AA89E28E8941F0037A04E /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		D36AA89F28E8941F0037A04E /* MyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCollectionViewCell.xib; sourceTree = "<group>"; };
+		D36AA8A428E897990037A04E /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		D36AA8A528E897990037A04E /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
+		D36AA8A828E897B30037A04E /* TopCarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCarouselTableViewCell.swift; sourceTree = "<group>"; };
+		D36AA8A928E897B30037A04E /* TopCarouselTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopCarouselTableViewCell.xib; sourceTree = "<group>"; };
+		D36B4F7128EAE2FF003447AD /* MidCarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidCarouselTableViewCell.swift; sourceTree = "<group>"; };
+		D36B4F7228EAE2FF003447AD /* MidCarouselTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MidCarouselTableViewCell.xib; sourceTree = "<group>"; };
+		D37D874D28CCFF9600C72225 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D37DA6FB29028D6600618796 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		D37DA6FD2902B40900618796 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		D37DA725290316ED00618796 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		D37DA726290316ED00618796 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D36992DA28C5111600A6E68E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D339CB1D29031EAF0015DE32 /* Kingfisher in Frameworks */,
+				D37D875128CD02BC00C72225 /* FirebaseAuth in Frameworks */,
+				D339CB20290322EE0015DE32 /* Cosmos in Frameworks */,
+				D37D875328CD02BC00C72225 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D36992D428C5111600A6E68E = {
+			isa = PBXGroup;
+			children = (
+				D36992DF28C5111600A6E68E /* MovieApp */,
+				D36992DE28C5111600A6E68E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D36992DE28C5111600A6E68E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D36992DD28C5111600A6E68E /* MovieApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D36992DF28C5111600A6E68E /* MovieApp */ = {
+			isa = PBXGroup;
+			children = (
+				D36992F728C5115300A6E68E /* Model */,
+				D36992F828C5115C00A6E68E /* View */,
+				D36992F928C5116500A6E68E /* View Model */,
+				D36992FA28C5116F00A6E68E /* Controller */,
+				D36992FB28C511CD00A6E68E /* Supporting Files */,
+				D369930228C523CB00A6E68E /* Assets.xcassets */,
+				D36992F128C5111700A6E68E /* Info.plist */,
+				D37D874D28CCFF9600C72225 /* GoogleService-Info.plist */,
+				D36992E928C5111600A6E68E /* MovieApp.xcdatamodeld */,
+			);
+			path = MovieApp;
+			sourceTree = "<group>";
+		};
+		D36992F728C5115300A6E68E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D36AA89828E84D5F0037A04E /* MovieDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D36992F828C5115C00A6E68E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D37DA7232903046100618796 /* MoviesTabViewScreen */,
+				D37DA722290303A200618796 /* MovieDetailScreen */,
+				D36992EE28C5111700A6E68E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D36992F928C5116500A6E68E /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				D36AA89628E4F7160037A04E /* FetchDataViewModel.swift */,
+				D339CB39291D0B060015DE32 /* AuthViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		D36992FA28C5116F00A6E68E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D36992E428C5111600A6E68E /* WelcomeViewController.swift */,
+				D36992FE28C51E6400A6E68E /* RegisterViewController.swift */,
+				D369930028C51F6100A6E68E /* LoginViewController.swift */,
+				D369930428C5D24D00A6E68E /* MoviesTabViewController.swift */,
+				D36AA89028D1D5BB0037A04E /* SearchTabViewController.swift */,
+				D36AA89228D1D5D40037A04E /* AccountTabViewController.swift */,
+				D37DA6FB29028D6600618796 /* MovieDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D36992FB28C511CD00A6E68E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D339CB372912D3220015DE32 /* Extensions.swift */,
+				D36AA89428E4F4CA0037A04E /* Constants.swift */,
+				D37DA6FD2902B40900618796 /* Protocols.swift */,
+				D36992E028C5111600A6E68E /* AppDelegate.swift */,
+				D36992E228C5111600A6E68E /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D37DA722290303A200618796 /* MovieDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D37DA725290316ED00618796 /* InfoTableViewCell.swift */,
+				D37DA726290316ED00618796 /* InfoTableViewCell.xib */,
+				D339CB21290452E10015DE32 /* MovieDescriptionCell.swift */,
+				D339CB22290452E10015DE32 /* MovieDescriptionCell.xib */,
+				D339CB2B290945250015DE32 /* CastCell.swift */,
+				D339CB2C290945250015DE32 /* CastCell.xib */,
+				D339CB33290BFF0D0015DE32 /* RecommendedCell.swift */,
+				D339CB34290BFF0D0015DE32 /* RecommendedCell.xib */,
+				D339CB2F290945D70015DE32 /* CastnMoviesCollectionViewCell.swift */,
+				D339CB30290945D70015DE32 /* CastnMoviesCollectionViewCell.xib */,
+				D36992E628C5111600A6E68E /* Main.storyboard */,
+			);
+			path = MovieDetailScreen;
+			sourceTree = "<group>";
+		};
+		D37DA7232903046100618796 /* MoviesTabViewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D36AA89E28E8941F0037A04E /* MyCollectionViewCell.swift */,
+				D36AA89F28E8941F0037A04E /* MyCollectionViewCell.xib */,
+				D36AA8A428E897990037A04E /* MyTableViewCell.swift */,
+				D36AA8A528E897990037A04E /* MyTableViewCell.xib */,
+				D36B4F7128EAE2FF003447AD /* MidCarouselTableViewCell.swift */,
+				D36B4F7228EAE2FF003447AD /* MidCarouselTableViewCell.xib */,
+				D36AA8A828E897B30037A04E /* TopCarouselTableViewCell.swift */,
+				D36AA8A928E897B30037A04E /* TopCarouselTableViewCell.xib */,
+			);
+			path = MoviesTabViewScreen;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D36992DC28C5111600A6E68E /* MovieApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D36992F428C5111700A6E68E /* Build configuration list for PBXNativeTarget "MovieApp" */;
+			buildPhases = (
+				D36992D928C5111600A6E68E /* Sources */,
+				D36992DA28C5111600A6E68E /* Frameworks */,
+				D36992DB28C5111600A6E68E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MovieApp;
+			packageProductDependencies = (
+				D37D875028CD02BC00C72225 /* FirebaseAuth */,
+				D37D875228CD02BC00C72225 /* FirebaseFirestore */,
+				D339CB1C29031EAF0015DE32 /* Kingfisher */,
+				D339CB1F290322EE0015DE32 /* Cosmos */,
+			);
+			productName = MovieApp;
+			productReference = D36992DD28C5111600A6E68E /* MovieApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D36992D528C5111600A6E68E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					D36992DC28C5111600A6E68E = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = D36992D828C5111600A6E68E /* Build configuration list for PBXProject "MovieApp" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D36992D428C5111600A6E68E;
+			packageReferences = (
+				D37D874F28CD02BC00C72225 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D339CB1B29031EAF0015DE32 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D339CB1E290322EE0015DE32 /* XCRemoteSwiftPackageReference "Cosmos" */,
+			);
+			productRefGroup = D36992DE28C5111600A6E68E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D36992DC28C5111600A6E68E /* MovieApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D36992DB28C5111600A6E68E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36AA8AB28E897B30037A04E /* TopCarouselTableViewCell.xib in Resources */,
+				D36992F028C5111700A6E68E /* LaunchScreen.storyboard in Resources */,
+				D36AA8A728E897990037A04E /* MyTableViewCell.xib in Resources */,
+				D339CB2E290945250015DE32 /* CastCell.xib in Resources */,
+				D339CB24290452E10015DE32 /* MovieDescriptionCell.xib in Resources */,
+				D36AA8A128E8941F0037A04E /* MyCollectionViewCell.xib in Resources */,
+				D37DA728290316ED00618796 /* InfoTableViewCell.xib in Resources */,
+				D37D874E28CCFF9600C72225 /* GoogleService-Info.plist in Resources */,
+				D369930328C523CB00A6E68E /* Assets.xcassets in Resources */,
+				D36992E828C5111600A6E68E /* Main.storyboard in Resources */,
+				D36B4F7428EAE2FF003447AD /* MidCarouselTableViewCell.xib in Resources */,
+				D339CB32290945D70015DE32 /* CastnMoviesCollectionViewCell.xib in Resources */,
+				D339CB36290BFF0D0015DE32 /* RecommendedCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D36992D928C5111600A6E68E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D369930128C51F6100A6E68E /* LoginViewController.swift in Sources */,
+				D339CB31290945D70015DE32 /* CastnMoviesCollectionViewCell.swift in Sources */,
+				D36992E528C5111600A6E68E /* WelcomeViewController.swift in Sources */,
+				D36AA8A028E8941F0037A04E /* MyCollectionViewCell.swift in Sources */,
+				D36AA89928E84D5F0037A04E /* MovieDataModel.swift in Sources */,
+				D36992FF28C51E6400A6E68E /* RegisterViewController.swift in Sources */,
+				D36992E128C5111600A6E68E /* AppDelegate.swift in Sources */,
+				D36AA89128D1D5BB0037A04E /* SearchTabViewController.swift in Sources */,
+				D339CB23290452E10015DE32 /* MovieDescriptionCell.swift in Sources */,
+				D339CB2D290945250015DE32 /* CastCell.swift in Sources */,
+				D36992EB28C5111600A6E68E /* MovieApp.xcdatamodeld in Sources */,
+				D36AA8AA28E897B30037A04E /* TopCarouselTableViewCell.swift in Sources */,
+				D36992E328C5111600A6E68E /* SceneDelegate.swift in Sources */,
+				D339CB35290BFF0D0015DE32 /* RecommendedCell.swift in Sources */,
+				D36AA8A628E897990037A04E /* MyTableViewCell.swift in Sources */,
+				D37DA727290316ED00618796 /* InfoTableViewCell.swift in Sources */,
+				D369930528C5D24D00A6E68E /* MoviesTabViewController.swift in Sources */,
+				D37DA6FC29028D6600618796 /* MovieDetailViewController.swift in Sources */,
+				D37DA6FE2902B40900618796 /* Protocols.swift in Sources */,
+				D339CB382912D3220015DE32 /* Extensions.swift in Sources */,
+				D36AA89328D1D5D40037A04E /* AccountTabViewController.swift in Sources */,
+				D36AA89728E4F7160037A04E /* FetchDataViewModel.swift in Sources */,
+				D36AA89528E4F4CA0037A04E /* Constants.swift in Sources */,
+				D339CB3A291D0B060015DE32 /* AuthViewModel.swift in Sources */,
+				D36B4F7328EAE2FF003447AD /* MidCarouselTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D36992E628C5111600A6E68E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D36992E728C5111600A6E68E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D36992EE28C5111700A6E68E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D36992EF28C5111700A6E68E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D36992F228C5111700A6E68E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D36992F328C5111700A6E68E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D36992F528C5111700A6E68E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovieApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Bury.MovieApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D36992F628C5111700A6E68E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MovieApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Bury.MovieApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D36992D828C5111600A6E68E /* Build configuration list for PBXProject "MovieApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D36992F228C5111700A6E68E /* Debug */,
+				D36992F328C5111700A6E68E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D36992F428C5111700A6E68E /* Build configuration list for PBXNativeTarget "MovieApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D36992F528C5111700A6E68E /* Debug */,
+				D36992F628C5111700A6E68E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D339CB1B29031EAF0015DE32 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		D339CB1E290322EE0015DE32 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D37D874F28CD02BC00C72225 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D339CB1C29031EAF0015DE32 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D339CB1B29031EAF0015DE32 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		D339CB1F290322EE0015DE32 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D339CB1E290322EE0015DE32 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
+		D37D875028CD02BC00C72225 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D37D874F28CD02BC00C72225 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D37D875228CD02BC00C72225 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D37D874F28CD02BC00C72225 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		D36992E928C5111600A6E68E /* MovieApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D36992EA28C5111600A6E68E /* MovieApp.xcdatamodel */,
+			);
+			currentVersion = D36992EA28C5111600A6E68E /* MovieApp.xcdatamodel */;
+			path = MovieApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D36992D528C5111600A6E68E /* Project object */;
+}
