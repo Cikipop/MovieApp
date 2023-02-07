@@ -11,19 +11,10 @@ class RecommendedCell: UITableViewCell {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    let parser = Parser()
-    var delegate : CarouselTableViewCellDelegate?
-    var recommended = [AllMovies]()
-    var IdNumber = 0 {
-        didSet {  let url = "\(Constants.baseUrl)\(IdNumber)/similar\(Constants.apiKey)"
-            parser.ParseMovies(api: url) {
-                data in self.recommended = data
-                DispatchQueue.main.async {
-                    self.myCollectionView.reloadData()
-                }
-            }
-        }
-    }
+
+   weak var delegate : CarouselTableViewCellDelegate?
+     var recommended = [AllMovies]()
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,7 +48,9 @@ extension RecommendedCell: UICollectionViewDelegate , UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(recommended[indexPath.row].original_title)
         
-        delegate?.CellDidSelect(id: recommended[indexPath.row].id)
+       
+     delegate?.CellDidSelect(id: recommended[indexPath.row].id)
     }
 }

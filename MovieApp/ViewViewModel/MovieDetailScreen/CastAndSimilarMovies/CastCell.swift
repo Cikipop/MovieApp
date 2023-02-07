@@ -11,18 +11,9 @@ class CastCell: UITableViewCell {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    let parser = Parser()
+   
     var credits = [AllCast]()
-    var IdNumber = 0 {
-        didSet {  let url = "\(Constants.baseUrl)\(IdNumber)/credits\(Constants.apiKey)"
-            parser.ParseCreditsDetail(api: url) {
-                data in self.credits = data
-                DispatchQueue.main.async {
-                    self.myCollectionView.reloadData()
-                }
-            }
-        }
-    }
+  
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,24 +11,22 @@ import Kingfisher
 class MoviesTabViewController: UIViewController, UITabBarDelegate, UITabBarControllerDelegate {
     
    @IBOutlet weak var myTableView: UITableView!
-    let parser = Parser()
-    var upcomingMovies = [AllMovies]()
-    var movieDetails: MovieDetails?
     
+    let parser = MoviesViewModel()
+  
+    
+    var upcomingMovies = [AllMovies]()
+    var topRatedMovies = [AllMovies]()
+    var nowPlayingMovies = [AllMovies]()
+    //    var movieDetails: MovieDetails?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         self.tabBarController?.delegate = self
         tableViewData()
         self.tabBarController?.navigationItem.hidesBackButton = true
-        
-        parser.ParseMovies(api: Constants.upcomingMoviesUrl) {
-            data in self.upcomingMovies = data
-            DispatchQueue.main.async {
-                self.myTableView.reloadData()
-            }
-        }
+        getMovies()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +35,25 @@ class MoviesTabViewController: UIViewController, UITabBarDelegate, UITabBarContr
 // bu tab e tekrar gelindiğinde ekran sıfırlansın diye bu şekilde ekledim
     }
     
-    func tableViewData() {
+    func getMovies() {
+        
+        parser.ParseMovies(api: Constants.upcomingMoviesUrl) {
+            data in self.upcomingMovies = data
+            DispatchQueue.main.async {
+                           self.myTableView.reloadData()
+                       }
+        }
+        
+        parser.ParseMovies(api: Constants.nowplayingMoviesUrl) {
+            data in self.nowPlayingMovies = data
+        }
+        
+        parser.ParseMovies(api: Constants.topRatedMoviesUrl) {
+            data in self.topRatedMovies = data
+        }
+    }
+    
+   func tableViewData() {
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.register(UINib(nibName: "TopCarouselTableViewCell", bundle: nil), forCellReuseIdentifier: "TopCarouselTableViewCell")
@@ -45,6 +61,11 @@ class MoviesTabViewController: UIViewController, UITabBarDelegate, UITabBarContr
         myTableView.register(UINib(nibName: "MyTableViewCell", bundle: nil), forCellReuseIdentifier: "MyTableViewCell")
         myTableView.sectionHeaderTopPadding = 0
     }
+    
+    deinit {
+        print("movies tab screen released")
+    }
+    
 }
 
 
@@ -64,28 +85,31 @@ extension MoviesTabViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 { let cell = tableView.dequeueReusableCell(withIdentifier: "TopCarouselTableViewCell", for: indexPath) as! TopCarouselTableViewCell
+            
             cell.delegate = self // protocol delegate
-            
+            cell.nowPlaying = nowPlayingMovies
+            cell.myCollectionView.reloadData()
             return cell
+        
         } else if indexPath.section == 1 { let cell = tableView.dequeueReusableCell(withIdentifier: "MidCarouselTableViewCell", for: indexPath) as! MidCarouselTableViewCell
-            cell.delegate = self // protocol için delegate
             
+            cell.delegate = self // protocol için delegate
+            cell.topRated = topRatedMovies
+            cell.myCollectionView.reloadData()
             return cell
+            
         } else { let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as! MyTableViewCell
             
             let item = upcomingMovies[indexPath.row]
             cell.prepareCell(item)
-            
             return cell}
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let item = upcomingMovies[indexPath.row]
-        
         let vc = storyboard?.instantiateViewController(withIdentifier:
                                                         "MovieDetailViewController") as? MovieDetailViewController
         vc?.movieId = item.id
-        
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -116,7 +140,8 @@ extension MoviesTabViewController: CarouselTableViewCellDelegate {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController
         vc?.movieId = id
-        self.navigationController?.pushViewController(vc!, animated: true)
+        self.navigationController?.pushViewController(vc ?? MovieDetailViewController(), animated: true)
+        
     }
 }
 

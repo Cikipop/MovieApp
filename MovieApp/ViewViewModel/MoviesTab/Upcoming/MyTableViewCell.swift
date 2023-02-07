@@ -28,7 +28,7 @@ class MyTableViewCell: UITableViewCell {
         movieName.text = item.original_title
         movieRate.text = "\(item.vote_average)"
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
+        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w185\(item.poster_path ?? "")")
         
         movieImage.kf.setImage(with: baseUrl)
         movieImage.layer.cornerRadius = 10

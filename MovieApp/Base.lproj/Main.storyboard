@@ -80,26 +80,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vix-tj-eUb">
-                                <rect key="frame" x="25" y="330" width="364" height="236"/>
+                                <rect key="frame" x="25" y="362" width="364" height="172"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s43-yj-FBq">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="cikip@cikip.com" borderStyle="roundedRect" placeholder="Email Adress" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="46q-ZD-Dcl">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="44"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="burakakar1990@gmail.com" borderStyle="roundedRect" placeholder="Email Adress" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="46q-ZD-Dcl">
-                                        <rect key="frame" x="0.0" y="64" width="364" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12344321" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lxc-4Y-hCW">
-                                        <rect key="frame" x="0.0" y="128" width="364" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="364" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvT-OV-hTV">
-                                        <rect key="frame" x="0.0" y="192" width="364" height="44"/>
+                                        <rect key="frame" x="0.0" y="128" width="364" height="44"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Log In">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
@@ -123,7 +117,6 @@
                     <navigationItem key="navigationItem" id="bis-1u-ZtM"/>
                     <connections>
                         <outlet property="emailText" destination="46q-ZD-Dcl" id="OhX-sc-kJb"/>
-                        <outlet property="errorLabel" destination="s43-yj-FBq" id="4WG-xC-ZF9"/>
                         <outlet property="passwordText" destination="Lxc-4Y-hCW" id="lsu-CD-QtP"/>
                         <segue destination="GNb-D8-MYi" kind="show" identifier="LoginSegue" id="hiH-TL-AUT"/>
                     </connections>
@@ -141,36 +134,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LF7-me-Pua">
-                                <rect key="frame" x="20" y="266" width="374" height="364"/>
+                                <rect key="frame" x="20" y="298" width="374" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6k-SL-ozZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="caY-Nb-kbX">
-                                        <rect key="frame" x="0.0" y="64" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Adress" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3J-vk-iEa">
-                                        <rect key="frame" x="0.0" y="128" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="374" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4m6-mr-FmL">
-                                        <rect key="frame" x="0.0" y="192" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="128" width="374" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Fs-Lc-2bk">
-                                        <rect key="frame" x="0.0" y="256" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="192" width="374" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFb-kr-zXg">
-                                        <rect key="frame" x="0.0" y="320" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="256" width="374" height="44"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Register">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
@@ -195,7 +182,6 @@
                     <connections>
                         <outlet property="confirmPasstext" destination="0Fs-Lc-2bk" id="Rvj-8S-euz"/>
                         <outlet property="emailText" destination="f3J-vk-iEa" id="6SB-Y9-CL4"/>
-                        <outlet property="errorLabel" destination="W6k-SL-ozZ" id="YLG-QM-5q3"/>
                         <outlet property="nameText" destination="caY-Nb-kbX" id="cIs-Ni-Qmf"/>
                         <outlet property="passwordText" destination="4m6-mr-FmL" id="uCU-m2-ll0"/>
                         <segue destination="GNb-D8-MYi" kind="show" identifier="RegisterSegue" id="zWU-rW-gQm"/>
@@ -254,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meK-zV-W2l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4026" y="-23"/>
+            <point key="canvasLocation" x="3954" y="-334"/>
         </scene>
         <!--Search-->
         <scene sceneID="7Pr-Qr-ZYQ">
@@ -514,9 +500,6 @@ Account</string>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

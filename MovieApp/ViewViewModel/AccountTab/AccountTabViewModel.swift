@@ -1,40 +1,18 @@
 //
-//  AuthViewModel.swift
+//  AccountTabViewModel.swift
 //  MovieApp
 //
-//  Created by BURAK AKAR on 10.11.2022.
+//  Created by BURAK AKAR on 16.12.2022.
 //
 
 import Foundation
 import FirebaseAuth
-import UIKit
 
-
-struct AuthViewModel {
+class AccountView {
     
     let user = Auth.auth().currentUser
     
-    // Register ViewModel
-    func signUp(email: String, password: String, errorLabel: UILabel, completion:@escaping (Bool) -> ()) {
-        
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let e = error {
-                errorLabel.text = e.localizedDescription }
-            else { completion(true) }
-        }
-    }
-    
-    // Login ViewModel
-    func signIn(email: String, password: String, errorLabel: UILabel, completion:@escaping (Bool) -> ()) {
-        
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            if let e = error {
-                errorLabel.text = e.localizedDescription }
-            else { completion(true) }
-        }
-    }
-    
-    // ResetPassword ViewModel
+    // ResetPassword 
     func resetPressed() {
         
         Auth.auth().sendPasswordReset(withEmail: self.user?.email ?? "") { error in
@@ -45,7 +23,7 @@ struct AuthViewModel {
         }
     }
     
-    // DeleteUser ViewModel
+    // DeleteUser
     func deletePressed(completion:@escaping (Bool) -> ()) {
         
         self.user?.delete { error in
@@ -59,7 +37,7 @@ struct AuthViewModel {
         }
     }
     
-    // SignOut ViewModel
+    // SignOut
     func signOut(completion: (_ success: Bool) -> Void) {
         
         do {
@@ -71,3 +49,4 @@ struct AuthViewModel {
         completion(true)
     }
 }
+

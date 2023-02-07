@@ -25,7 +25,7 @@ class CastnMoviesCollectionViewCell: UICollectionViewCell {
         characterName.text = item.name
         characterRoleName.text = item.character
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.profile_path ?? "")")
+        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w185\(item.profile_path ?? "")")
         
         characterImage.kf.setImage(with: baseUrl)
         characterImage.layer.cornerRadius = 10
@@ -37,7 +37,7 @@ class CastnMoviesCollectionViewCell: UICollectionViewCell {
         characterName.text = item.original_title
         characterRoleName.text = ""
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
+        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w154\(item.poster_path ?? "")")
         
         characterImage.kf.setImage(with: baseUrl)
     }

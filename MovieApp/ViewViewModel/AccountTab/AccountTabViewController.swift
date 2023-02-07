@@ -16,7 +16,7 @@ class AccountTabViewController: UIViewController {
     @IBOutlet weak var mailLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    let user = AuthViewModel()
+    let user = AccountView()
     let currentUser = Auth.auth().currentUser
     
     override func viewDidLoad() {
@@ -84,4 +84,11 @@ class AccountTabViewController: UIViewController {
         
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
+    deinit {
+        print("account screen released")
+    }
+    
 }
+
+

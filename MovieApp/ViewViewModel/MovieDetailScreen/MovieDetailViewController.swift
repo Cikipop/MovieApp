@@ -13,28 +13,55 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var detailTableView: UITableView!
     
-    let parser = Parser()
+    let parser = MovieDetailScreen()
     var cosmosView: CosmosView!
     var detailedMovieInfo: MovieDetails?
     var movieId = Int()
+    var recommendedMovies = [AllMovies]()
+    var cast = [AllCast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableViewData()
         parseMovieDetail()
+        parseCast()
+        parseRecommendedMovies()
+    }
+    
+    deinit {
+        print("detail screen released")
     }
     
     func parseMovieDetail() {
         
         let url = "\(Constants.baseUrl)\(movieId)\(Constants.apiKey)"
-        print(url)
+        
         parser.ParseMovieDetail(api: url) {
             data in self.detailedMovieInfo = data
             DispatchQueue.main.async {
                 self.detailTableView.reloadData()
             }
         }
+    }
+    
+    func parseRecommendedMovies() {
+        
+        let url = "\(Constants.baseUrl)\(movieId)/similar\(Constants.apiKey)"
+        
+        parser.ParseMovies(api: url) {
+                       data in self.recommendedMovies = data
+      
+        }
+    }
+    
+    func parseCast() {
+        
+        let url = "\(Constants.baseUrl)\(movieId)/credits\(Constants.apiKey)"
+            parser.ParseCreditsDetail(api: url) {
+                data in self.cast = data
+        
+            }
     }
     
     func tableViewData() {
@@ -72,14 +99,17 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
                 return cell
                 
             } else if indexPath.section == 2 { let cell = tableView.dequeueReusableCell(withIdentifier: "CastCell", for: indexPath) as! CastCell
-                cell.IdNumber = movieId
+                
+                cell.credits = cast
+                cell.myCollectionView.reloadData()
                 
                 return cell
                 
             } else { let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendedCell", for: indexPath) as! RecommendedCell
                 
-                cell.IdNumber = movieId
                 cell.delegate = self
+                cell.recommended = recommendedMovies
+                cell.myCollectionView.reloadData()
                 
                 return cell
             }
@@ -116,10 +146,12 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-//MARK: - Protocol extension
+// MARK: - Protocol extension
 extension MovieDetailViewController: CarouselTableViewCellDelegate {
-    
+
     func CellDidSelect(id: Int) {
+
+        self.navigationController?.popViewController(animated: true)
         
         let vc = storyboard?.instantiateViewController(withIdentifier:
                                                         "MovieDetailViewController") as? MovieDetailViewController
@@ -127,4 +159,6 @@ extension MovieDetailViewController: CarouselTableViewCellDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
+
+
 

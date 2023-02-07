@@ -9,9 +9,9 @@ import UIKit
 
 class MidCarouselTableViewCell: UITableViewCell {
     
-    var delegate : CarouselTableViewCellDelegate?
-    let parser = Parser()
-    var topRatedMovies = [AllMovies]()
+    
+   weak var delegate : CarouselTableViewCellDelegate?
+    var topRated = [AllMovies]()
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
@@ -20,39 +20,31 @@ class MidCarouselTableViewCell: UITableViewCell {
         
         collectionViewData()
         
-        parser.ParseMovies(api: Constants.topRatedMoviesUrl) {
-            data in self.topRatedMovies = data
-            DispatchQueue.main.async {
-                self.myCollectionView.reloadData()
-            }
-        }
-        
-        func collectionViewData() {
-            myCollectionView.dataSource = self
-            myCollectionView.delegate = self
-            myCollectionView.register(UINib(nibName: "MyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyCollectionViewCell")
-        }
+    }
+    
+    func collectionViewData() {
+        myCollectionView.dataSource = self
+        myCollectionView.delegate = self
+        myCollectionView.register(UINib(nibName: "MyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyCollectionViewCell")
     }
 }
 
 extension MidCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        topRatedMovies.count
-        
+        topRated.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
-        let item = topRatedMovies[indexPath.row]
+        let item = topRated[indexPath.row]
         cell.prepareCell(item)
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.CellDidSelect(id: topRatedMovies[indexPath.row].id)
+        delegate?.CellDidSelect(id: topRated[indexPath.row].id)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

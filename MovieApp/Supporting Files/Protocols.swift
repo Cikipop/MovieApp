@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CarouselTableViewCellDelegate {
+protocol CarouselTableViewCellDelegate: AnyObject {
     func CellDidSelect(id: Int)
 }
 

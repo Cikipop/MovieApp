@@ -10,22 +10,17 @@ import Kingfisher
 
 class TopCarouselTableViewCell: UITableViewCell {
     
-    let parser = Parser()
-    var nowPlayingMovies = [AllMovies]()
-    var delegate : CarouselTableViewCellDelegate?
     
-    @IBOutlet weak var myCollectionView: UICollectionView!
+    var nowPlaying = [AllMovies]()
+   weak var delegate : CarouselTableViewCellDelegate?
+    
+    @IBOutlet var myCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         collectionViewData()
-        parser.ParseMovies(api: Constants.nowplayingMoviesUrl) {
-            data in self.nowPlayingMovies = data
-            DispatchQueue.main.async {
-                self.myCollectionView.reloadData()
-            }
-        }
+        
     }
     
     func collectionViewData() {
@@ -38,21 +33,20 @@ class TopCarouselTableViewCell: UITableViewCell {
 extension TopCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        nowPlayingMovies.count
+        nowPlaying.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
-        let item = nowPlayingMovies[indexPath.row]
+        let item = nowPlaying[indexPath.row]
         cell.prepareCell(item)
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.CellDidSelect(id: nowPlayingMovies[indexPath.row].id)
+        delegate?.CellDidSelect(id: nowPlaying[indexPath.row].id)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

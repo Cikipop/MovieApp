@@ -15,12 +15,12 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
     @IBOutlet weak var mySearchTableView: UITableView!
     
     var searchedApi = String()
-    var searching = false
+//    var searching = false
     var isSearched: Bool = false
     var upcomingMovies = [AllMovies]()
     var searchedMovies = [AllMovies]()
     let searchController = UISearchController(searchResultsController: nil)
-    let parser = Parser()
+    let parser = SearchMovie()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +29,8 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
         
         tableViewData()
         configureSearchController()
-        
-        parser.ParseMovies(api: Constants.upcomingMoviesUrl) {
-            data in self.upcomingMovies = data
-            DispatchQueue.main.async {
-                self.mySearchTableView.reloadData()
-            }
-        }
+        searchedMovieList()
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,11 +43,23 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
         searchController.searchBar.isHidden = false
     }
     
+    
+    func searchedMovieList() {
+        
+        parser.ParseSearchedMovie(api: Constants.upcomingMoviesUrl) {
+            data in self.upcomingMovies = data
+            DispatchQueue.main.async {
+                self.mySearchTableView.reloadData()
+            }
+        }
+    }
+    
+    
     func configureSearchController() {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-        self.tabBarController?.navigationItem.hidesSearchBarWhenScrolling = false
+//        self.tabBarController?.navigationItem.hidesSearchBarWhenScrolling = false
         mySearchTableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.placeholder = "Movie name"
     }
@@ -64,6 +71,11 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
         mySearchTableView.sectionHeaderTopPadding = 0
         mySearchTableView.tableHeaderView = searchController.searchBar
     }
+    deinit {
+        print("search tab screen released")
+    }
+    
+    
 }
 
 //MARK: - TableView Delegates
@@ -117,7 +129,7 @@ extension SearchTabViewController: UISearchBarDelegate, UISearchResultsUpdating 
                 let url = "\(Constants.baseSearchUrl)\(Constants.apiKey)&language=en-US&query=\(searchText)&page=1&include_adult=false"
                 let formattedUrl = url.replacingOccurrences(of: " ", with: "%20")
                 
-                parser.ParseMovies(api: formattedUrl) {
+                parser.ParseSearchedMovie(api: formattedUrl) {
                     data in self.searchedMovies = data
                     
                 }
