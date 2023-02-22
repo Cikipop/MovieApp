@@ -11,29 +11,12 @@ class CastCell: UITableViewCell {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    let parser = Parser()
     var credits = [AllCast]()
-    var IdNumber = 0 {
-        didSet {  let url = "\(Constants.baseUrl)\(IdNumber)/credits\(Constants.apiKey)"
-            parser.ParseCreditsDetail(api: url) {
-                data in self.credits = data
-                DispatchQueue.main.async {
-                    self.myCollectionView.reloadData()
-                }
-            }
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         collectionViewData()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     func collectionViewData() {
@@ -49,7 +32,7 @@ extension CastCell: UICollectionViewDelegate , UICollectionViewDataSource , UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CastnMoviesCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CastnMoviesCollectionViewCell else { return UICollectionViewCell() }
         let item = credits[indexPath.row]
         cell.prepareCastCell(item)
         return cell

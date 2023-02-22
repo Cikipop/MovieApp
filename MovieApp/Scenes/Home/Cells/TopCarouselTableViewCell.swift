@@ -10,9 +10,8 @@ import Kingfisher
 
 class TopCarouselTableViewCell: UITableViewCell {
     
-    let parser = Parser()
     var nowPlayingMovies = [AllMovies]()
-    var delegate : CarouselTableViewCellDelegate?
+    var onTapNowPlayingMovie : ((Int) -> Void)? = nil
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
@@ -20,12 +19,6 @@ class TopCarouselTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         collectionViewData()
-        parser.ParseMovies(api: Constants.nowplayingMoviesUrl) {
-            data in self.nowPlayingMovies = data
-            DispatchQueue.main.async {
-                self.myCollectionView.reloadData()
-            }
-        }
     }
     
     func collectionViewData() {
@@ -43,7 +36,7 @@ extension TopCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as! MyCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell", for: indexPath) as? MyCollectionViewCell else { return UICollectionViewCell() }
         let item = nowPlayingMovies[indexPath.row]
         cell.prepareCell(item)
         
@@ -52,7 +45,7 @@ extension TopCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.CellDidSelect(id: nowPlayingMovies[indexPath.row].id)
+        onTapNowPlayingMovie?(nowPlayingMovies[indexPath.row].id ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

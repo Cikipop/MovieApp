@@ -22,12 +22,15 @@ class MyCollectionViewCell: UICollectionViewCell {
     
     func prepareCell(_ item: AllMovies) {
         
-        movieName.text = item.original_title.capitalized
-        starlabel.text = "\(item.vote_average)"
+        movieName.text = item.original_title?.capitalized
+        starlabel.text = "\(item.vote_average ?? 0.0)"
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
+        if let posterPath = item.poster_path,
+           let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")") {
+            movieImage.kf.indicatorType = .activity
+            movieImage.kf.setImage(with: baseUrl, options: [.cacheOriginalImage])
+        }
         
-        movieImage.kf.setImage(with: baseUrl)
         movieImage.layer.cornerRadius = 10
         
         clipsToBounds = true

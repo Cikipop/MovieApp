@@ -14,27 +14,17 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var mySearchTableView: UITableView!
     
-    var searchedApi = String()
-    var searching = false
-    var isSearched: Bool = false
-    var upcomingMovies = [AllMovies]()
-    var searchedMovies = [AllMovies]()
-    let searchController = UISearchController(searchResultsController: nil)
-    let parser = Parser()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         tableViewData()
         configureSearchController()
         
-        parser.ParseMovies(api: Constants.upcomingMoviesUrl) {
-            data in self.upcomingMovies = data
-            DispatchQueue.main.async {
-                self.mySearchTableView.reloadData()
-            }
+        viewModel.fetchMovies { [weak self] _ in
+            self?.reloadTableView()
         }
     }
     
@@ -64,6 +54,12 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
         mySearchTableView.sectionHeaderTopPadding = 0
         mySearchTableView.tableHeaderView = searchController.searchBar
     }
+    
+    private func reloadTableView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.mySearchTableView.reloadData()
+        }
+    }
 }
 
 //MARK: - TableView Delegates
@@ -71,14 +67,17 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
 extension SearchTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearched ? searchedMovies.count : upcomingMovies.count
+        return viewModel.isSearched ?
+        viewModel.searchedMovies.count
+        : viewModel.upcomingMovies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as! MyTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as? MyTableViewCell else { return UITableViewCell() }
         
-        
-        let item = isSearched ? searchedMovies[indexPath.row] : upcomingMovies[indexPath.row]
+        let item = viewModel.isSearched ?
+        viewModel.searchedMovies[indexPath.row]
+        : viewModel.upcomingMovies[indexPath.row]
         
         cell.prepareCell(item)
         return cell
@@ -86,45 +85,36 @@ extension SearchTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let item = isSearched ? searchedMovies[indexPath.row] : upcomingMovies[indexPath.row]
+        let item = viewModel.isSearched ?
+        viewModel.searchedMovies[indexPath.row]
+        : viewModel.upcomingMovies[indexPath.row]
         
-        let vc = storyboard?.instantiateViewController(withIdentifier:
-                                                        "MovieDetailViewController") as? MovieDetailViewController
-        vc?.movieId = item.id
+        guard let vc = storyboard?.instantiateViewController(
+            withIdentifier: "MovieDetailViewController"
+        ) as? MovieDetailViewController else { return }
+        vc.viewModel = MovieDetailViewModel(movieId: item.id ?? 0)
         
-        self.navigationController?.pushViewController(vc!, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250
     }
-    
 }
-
 
 //MARK: Search Bar Delegates
 
 extension SearchTabViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text ?? ""
-        if searchText == "" {
-            isSearched = false
-            self.mySearchTableView.reloadData()
-        } else {
-            if searchText != "" {
-                isSearched = true
-                let url = "\(Constants.baseSearchUrl)\(Constants.apiKey)&language=en-US&query=\(searchText)&page=1&include_adult=false"
-                let formattedUrl = url.replacingOccurrences(of: " ", with: "%20")
-                
-                parser.ParseMovies(api: formattedUrl) {
-                    data in self.searchedMovies = data
-                    
-                }
-                DispatchQueue.main.async {
-                    self.mySearchTableView.reloadData()
-                }
+        guard let searchText = searchController.searchBar.text else {
+            viewModel.fetchMovies { [weak self] _ in
+                self?.reloadTableView()
             }
+            return
+        }
+        viewModel.fetchMovies(with: searchText) { [weak self] searchedMovies in
+            self?.reloadTableView()
         }
     }
 }

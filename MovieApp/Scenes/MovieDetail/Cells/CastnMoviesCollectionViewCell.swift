@@ -26,8 +26,12 @@ class CastnMoviesCollectionViewCell: UICollectionViewCell {
         characterRoleName.text = item.character
         
         let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.profile_path ?? "")")
-        
-        characterImage.kf.setImage(with: baseUrl)
+        characterImage.kf.indicatorType = .activity
+        characterImage.kf.setImage(
+            with: baseUrl,
+            options: [.cacheOriginalImage],
+            completionHandler: nil
+        )
         characterImage.layer.cornerRadius = 10
         characterImage.clipsToBounds = true
     }
@@ -37,8 +41,14 @@ class CastnMoviesCollectionViewCell: UICollectionViewCell {
         characterName.text = item.original_title
         characterRoleName.text = ""
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
-        
-        characterImage.kf.setImage(with: baseUrl)
+        if let posterPath = item.poster_path,
+           let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")") {
+            characterImage.kf.indicatorType = .activity
+            characterImage.kf.setImage(
+                with: baseUrl,
+                options: [.cacheOriginalImage],
+                completionHandler: nil
+            )
+        }
     }
 }

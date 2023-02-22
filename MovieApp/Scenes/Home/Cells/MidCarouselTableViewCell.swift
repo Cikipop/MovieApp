@@ -9,8 +9,7 @@ import UIKit
 
 class MidCarouselTableViewCell: UITableViewCell {
     
-    var delegate : CarouselTableViewCellDelegate?
-    let parser = Parser()
+    var onTapTopRatedMovie: ((Int) -> Void)? = nil
     var topRatedMovies = [AllMovies]()
     
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -19,13 +18,6 @@ class MidCarouselTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         collectionViewData()
-        
-        parser.ParseMovies(api: Constants.topRatedMoviesUrl) {
-            data in self.topRatedMovies = data
-            DispatchQueue.main.async {
-                self.myCollectionView.reloadData()
-            }
-        }
         
         func collectionViewData() {
             myCollectionView.dataSource = self
@@ -52,7 +44,7 @@ extension MidCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.CellDidSelect(id: topRatedMovies[indexPath.row].id)
+        onTapTopRatedMovie?(topRatedMovies[indexPath.row].id ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

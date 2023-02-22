@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol CarouselTableViewCellDelegate {
-    func CellDidSelect(id: Int)
+protocol CarouselTableViewCellDelegate: NSObject {
+    func cellDidSelect(id: Int)
 }
 
 

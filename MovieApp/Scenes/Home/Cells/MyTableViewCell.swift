@@ -26,11 +26,13 @@ class MyTableViewCell: UITableViewCell {
         
         movieDate.text = item.release_date
         movieName.text = item.original_title
-        movieRate.text = "\(item.vote_average)"
+        movieRate.text = "\(item.vote_average ?? 0.0)"
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
-        
-        movieImage.kf.setImage(with: baseUrl)
+        if let posterPath = item.poster_path,
+           let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")") {
+            movieImage.kf.indicatorType = .activity
+            movieImage.kf.setImage(with: baseUrl)
+        }
         movieImage.layer.cornerRadius = 10
         
         clipsToBounds = true

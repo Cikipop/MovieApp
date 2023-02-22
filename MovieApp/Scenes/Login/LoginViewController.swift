@@ -9,14 +9,11 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-    
-    
-    
-    let user = AuthViewModel()
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     
+    private let authViewModel = AuthViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +21,17 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
+        guard let email = emailText.text,
+              let password = passwordText.text else { return }
         
-        
-        
-        user.signIn(email: emailText.text ?? "", password: passwordText.text ?? "", errorLabel: errorLabel) { (success) -> Void in
+        authViewModel.signIn(
+            email: email,
+            password: password
+        ) { [weak self] success, error in
             if success {
-                self.performSegue(withIdentifier: "LoginSegue", sender: self)
-            } else {
-                
+                self?.performSegue(withIdentifier: "LoginSegue", sender: self)
+            } else if let error = error {
+                self?.showAlertDialog(with: error)
             }
         }
     }
