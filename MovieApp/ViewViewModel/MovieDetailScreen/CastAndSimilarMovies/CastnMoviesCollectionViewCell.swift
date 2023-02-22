@@ -37,7 +37,7 @@ class CastnMoviesCollectionViewCell: UICollectionViewCell {
         characterName.text = item.original_title
         characterRoleName.text = ""
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w154\(item.poster_path ?? "")")
+        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w185\(item.poster_path ?? "")")
         
         characterImage.kf.setImage(with: baseUrl)
     }

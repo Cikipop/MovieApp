@@ -51,7 +51,9 @@ class MovieDetailViewController: UIViewController {
         
         parser.ParseMovies(api: url) {
                        data in self.recommendedMovies = data
-      
+            DispatchQueue.main.async {
+                self.detailTableView.reloadData()
+            }
         }
     }
     
@@ -60,7 +62,9 @@ class MovieDetailViewController: UIViewController {
         let url = "\(Constants.baseUrl)\(movieId)/credits\(Constants.apiKey)"
             parser.ParseCreditsDetail(api: url) {
                 data in self.cast = data
-        
+                DispatchQueue.main.async {
+                    self.detailTableView.reloadData()
+                }
             }
     }
     

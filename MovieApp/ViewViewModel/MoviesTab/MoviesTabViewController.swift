@@ -46,10 +46,16 @@ class MoviesTabViewController: UIViewController, UITabBarDelegate, UITabBarContr
         
         parser.ParseMovies(api: Constants.nowplayingMoviesUrl) {
             data in self.nowPlayingMovies = data
+            DispatchQueue.main.async {
+                           self.myTableView.reloadData()
+                       }
         }
         
         parser.ParseMovies(api: Constants.topRatedMoviesUrl) {
             data in self.topRatedMovies = data
+            DispatchQueue.main.async {
+                           self.myTableView.reloadData()
+                       }
         }
     }
     
@@ -137,7 +143,7 @@ extension MoviesTabViewController: UITableViewDelegate, UITableViewDataSource {
 extension MoviesTabViewController: CarouselTableViewCellDelegate {
     
     func CellDidSelect(id: Int) {
-        
+        //TODO: Optional kontrolü için Guard check yapılabilir.
         let vc = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController
         vc?.movieId = id
         self.navigationController?.pushViewController(vc ?? MovieDetailViewController(), animated: true)

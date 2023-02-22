@@ -69,7 +69,7 @@ class InfoTableViewCell: UITableViewCell {
         rating.settings.updateOnTouch = false
         rating.settings.fillMode = .precise
         
-        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
+        let baseUrl = URL(string: "https://image.tmdb.org/t/p/w185\(item.poster_path ?? "")")
         
         poster.kf.setImage(with: baseUrl)
         poster.layer.cornerRadius = 10
