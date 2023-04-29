@@ -10,16 +10,17 @@ import Kingfisher
 
 class MoviesTabViewController: UIViewController, UITabBarDelegate, UITabBarControllerDelegate {
     
-   @IBOutlet weak var myTableView: UITableView!
-    var upcomingMovies = [AllMovies]()
-    var topRatedMovies = [AllMovies]()
-    var nowPlayingMovies = [AllMovies]()
-    
+    @IBOutlet weak var myTableView: UITableView!
+//    public var movieId: Int?
+
+//   var delegate: MovieIdDelegate?
     private let viewModel = MoviesTabViewModel()
     
+    
+//    let detailViewModel = MovieDetailViewModel(movieIdaa: MovieDetailViewModel.shared.movieIdaa)
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        MoviesTabViewController.delegate = self
         self.tabBarController?.delegate = self
         self.tabBarController?.navigationItem.hidesBackButton = true
         
@@ -27,10 +28,16 @@ class MoviesTabViewController: UIViewController, UITabBarDelegate, UITabBarContr
         fetchData()
     }
     
+    deinit {
+        debugPrint("xxx MoviesTabVc deinit successfully")
+        ImageCache.default.memoryStorage.removeAll()
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-
+        
         myTableView.setContentOffset(.zero, animated: true)
-// bu tab e tekrar gelindiğinde ekran sıfırlansın diye bu şekilde ekledim
+        // bu tab e tekrar gelindiğinde ekran sıfırlansın diye bu şekilde ekledim
     }
     
     func tableViewData() {
@@ -43,49 +50,66 @@ class MoviesTabViewController: UIViewController, UITabBarDelegate, UITabBarContr
     }
     
     private func fetchData() {
-        let group = DispatchGroup()
         
-        group.enter()
-        
-        viewModel.fetchMovies(with: Constants.upcomingMoviesUrl) { [unowned self] upcomingMovies in
-            self.upcomingMovies = upcomingMovies ?? []
+        viewModel.getNowPlayingMovies { errorMessage in
+            if let errorMessage = errorMessage {
+                
+                print("\(errorMessage)")
+            }
         }
         
-        viewModel.fetchMovies(with: Constants.nowplayingMoviesUrl) { [weak self] movies in
-            guard let movies = movies else { return }
-            self?.nowPlayingMovies = movies
-            debugPrint("xxx now playing count: ", movies.count)
-            group.leave()
+        viewModel.getTopRatedMovies { errorMessage in
+            if let errorMessage = errorMessage {
+                
+                print("\(errorMessage)")
+            }
         }
-        group.enter()
-        viewModel.fetchMovies(with: Constants.topRatedMoviesUrl) { [weak self] movies in
-            guard let movies = movies else { return }
-            self?.topRatedMovies = movies
-            group.leave()
-        }
-        group.enter()
-        viewModel.fetchMovies(with: Constants.upcomingMoviesUrl) { [weak self] movies in
-            guard let movies = movies else { return }
-            self?.upcomingMovies = movies
-            group.leave()
-        }
-        group.notify(queue: .main) { [weak self] in
-            self?.myTableView.reloadData()
+        
+        viewModel.getUpcomingMovies { errorMessage in
+            if let errorMessage = errorMessage {
+                
+                print("\(errorMessage)")
+            }
+            DispatchQueue.main.async {
+                self.myTableView.reloadData()
+            }
         }
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "detailSegue") {
+//            let vc = segue.destination as? MovieDetailViewController
+//            vc?.delegate = self
+//
+//
+//        }
+//    }
+    
+    
     private func navigateToDetail(with movieId: Int) {
-        guard let vc = storyboard?.instantiateViewController(
-                withIdentifier:"MovieDetailViewController"
-            ) as? MovieDetailViewController else { return }
-        vc.viewModel = MovieDetailViewModel(movieId: movieId)
-        self.navigationController?.pushViewController(vc, animated: true)
+
+        guard let vc = self.storyboard?.instantiateViewController(
+            withIdentifier:"MovieDetailViewController"
+        ) as? MovieDetailViewController else { return }
+//
+//        delegate?.passMovieId(id: movieId)
+        vc.viewModel.movieId = movieId
+       print("yoyo \(movieId)")
+
+
+
+
+
+
+      self.navigationController?.pushViewController(vc, animated: true)
     }
+
 }
 
 
 //MARK: - TableView Delegates
 extension MoviesTabViewController: UITableViewDelegate, UITableViewDataSource {
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -93,7 +117,7 @@ extension MoviesTabViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 2 {
-            return upcomingMovies.count
+            return viewModel.upcomingMovies.count
         } else {
             return 1
         }
@@ -104,30 +128,36 @@ extension MoviesTabViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TopCarouselTableViewCell", for: indexPath) as? TopCarouselTableViewCell else { return UITableViewCell() }
-            cell.nowPlayingMovies = nowPlayingMovies
+            cell.nowPlayingMovies = viewModel.nowPlayingMovies
             cell.onTapNowPlayingMovie = { [weak self] movieId in
                 self?.navigateToDetail(with: movieId)
             }
+            cell.myCollectionView.reloadData()
+            
             return cell
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MidCarouselTableViewCell", for: indexPath) as? MidCarouselTableViewCell else { return UITableViewCell() }
-            cell.topRatedMovies = topRatedMovies
+            cell.topRatedMovies = viewModel.topRatedMovies
             cell.onTapTopRatedMovie = { [weak self] movieId in
                 self?.navigateToDetail(with: movieId)
             }
+            cell.myCollectionView.reloadData()
+            
             return cell
             
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as? MyTableViewCell else { return UITableViewCell() }
-            let item = upcomingMovies[indexPath.row]
+            let item = viewModel.upcomingMovies[indexPath.row]
             cell.prepareCell(item)
             return cell
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = upcomingMovies[indexPath.row]
+        let item = viewModel.upcomingMovies[indexPath.row]
+        
         navigateToDetail(with: item.id ?? 0)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -152,6 +182,10 @@ extension MoviesTabViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
+    
+
+
+    
 
 
 

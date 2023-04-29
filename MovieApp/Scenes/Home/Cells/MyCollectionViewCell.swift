@@ -26,14 +26,14 @@ class MyCollectionViewCell: UICollectionViewCell {
         starlabel.text = "\(item.vote_average ?? 0.0)"
         
         if let posterPath = item.poster_path,
-           let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")") {
+           let baseUrl = URL(string: "https://image.tmdb.org/t/p/w400\(posterPath ?? "")") {
             movieImage.kf.indicatorType = .activity
             movieImage.kf.setImage(with: baseUrl, options: [.cacheOriginalImage])
         }
         
         movieImage.layer.cornerRadius = 10
-        
         clipsToBounds = true
+        
     }
 }
 

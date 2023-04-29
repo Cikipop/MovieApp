@@ -9,72 +9,76 @@ import Foundation
 
 public final class MovieDetailViewModel {
     
-    public var movieId: Int
+   
+    static let shared = MovieDetailViewModel()
+    var detailedMovieInfo = MovieDetails()
+    var similarMovies = [AllMovies]()
+    var credits = [AllCast]()
+   
+//    var movieIdaa = Int()
     
-    public init(movieId: Int) {
-        self.movieId = movieId
+    public var movieId = Int()
+//
+//        public init(movieId: Int) {
+//            self.movieId = movieId
+//
+//        }
+
+   
+    
+    
+    func getMovieDetails(complete: @escaping((String?)->())) {
+        
+        MovieDetailScreeManager.shared.getMovieDetails(movieId: movieId ) { items, errorMessage in
+            print("hellooooo \(self.movieId)")
+            if let items = items {
+                self.detailedMovieInfo = items
+               
+            }
+            complete(errorMessage)
+        }
     }
     
-    public func getMovieDetail(completion: @escaping (MovieDetails?) -> Void) {
-        let urlString = "\(Constants.baseUrl)\(movieId)\(Constants.apiKey)"
-        guard let url = URL(string: urlString) else { return }
+    func getMovieCast(complete: @escaping((String?)->())) {
         
-        URLSession.shared.dataTask(
-            with: url,
-            completionHandler: { data, response, error in
-            guard let data = data, error == nil else {
-                print("something went wrong")
-                return
-            }
+        MovieDetailScreeManager.shared.getMovieCast(movieId: movieId ) { items, errorMessage in
             
-            do {
-                let result = try JSONDecoder().decode(MovieDetails.self, from: data)
-                completion(result.self)
-            } catch {
-                print(String(describing: error))
-                completion(nil)
+            if let items = items {
+                self.credits = items.cast ?? []
             }
-        }).resume()
+            complete(errorMessage)
+         
+        }
     }
     
-    public func getCredits(completion: @escaping ([AllCast]?) -> Void) {
-        let urlString = "\(Constants.baseUrl)\(movieId)/credits\(Constants.apiKey)"
-        guard let url = URL(string: urlString) else { return }
+    func getSimilarMovies(complete: @escaping((String?)->())) {
         
-        URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
-            guard let data = data, error == nil else {
-                print("something went wrong")
-                return
-            }
+        MovieDetailScreeManager.shared.getSimilarMovies(movieId: movieId ) { items, errorMessage in
             
-            do {
-                let result = try JSONDecoder().decode(Character.self, from: data)
-                completion(result.cast)
-            } catch {
-                print(String(describing: error))
-                completion(nil)
+            if let items = items {
+                self.similarMovies = items.results ?? []
             }
-        }).resume()
-    }
-    
-    public func getSimilarMovies(completion: @escaping ([AllMovies]?) -> Void) {
-        let urlString = "\(Constants.baseUrl)\(movieId)/similar\(Constants.apiKey)"
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
-            guard let data = data, error == nil else {
-                print("something went wrong")
-                return
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(Movie.self, from: data)
-                completion(result.results)
-            } catch {
-                print(String(describing: error))
-                completion(nil)
-            }
-        }).resume()
+            complete(errorMessage)
+        }
+       
     }
     
 }
+    
+
+
+//extension MovieDetailViewModel: MovieIdDelegate {
+//    func passMovieId(id: Int) {
+//        movieId = id
+//    }
+    
+    
+    
+    
+
+    
+
+
+    
+
+

@@ -12,6 +12,7 @@ class MidCarouselTableViewCell: UITableViewCell {
     var onTapTopRatedMovie: ((Int) -> Void)? = nil
     var topRatedMovies = [AllMovies]()
     
+    
     @IBOutlet weak var myCollectionView: UICollectionView!
     
     override func awakeFromNib() {
@@ -23,13 +24,14 @@ class MidCarouselTableViewCell: UITableViewCell {
             myCollectionView.dataSource = self
             myCollectionView.delegate = self
             myCollectionView.register(UINib(nibName: "MyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyCollectionViewCell")
+            myCollectionView.isPagingEnabled = true
         }
     }
 }
 
 extension MidCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        topRatedMovies.count
+         topRatedMovies.count
         
     }
     
@@ -47,9 +49,13 @@ extension MidCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewD
         onTapTopRatedMovie?(topRatedMovies[indexPath.row].id ?? 0)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+       
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cWidth = collectionView.frame.size.width / 2
-        let cHeight = collectionView.frame.size.height
-        return CGSize(width: cWidth, height: cHeight)
+        let frameSize = collectionView.frame.size
+        return CGSize(width: frameSize.width / 2, height: frameSize.height)
     }
 }

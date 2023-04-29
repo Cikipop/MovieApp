@@ -51,6 +51,11 @@
 		D37DA6FE2902B40900618796 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA6FD2902B40900618796 /* Protocols.swift */; };
 		D37DA727290316ED00618796 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA725290316ED00618796 /* InfoTableViewCell.swift */; };
 		D37DA728290316ED00618796 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D37DA726290316ED00618796 /* InfoTableViewCell.xib */; };
+		D3AD270329CC5E440051AA01 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AD270229CC5E440051AA01 /* NetworkHelper.swift */; };
+		D3AD270529CC5E520051AA01 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AD270429CC5E520051AA01 /* NetworkManager.swift */; };
+		D3AD270A29CC6E210051AA01 /* HomeScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AD270929CC6E210051AA01 /* HomeScreenManager.swift */; };
+		D3AD270C29DDB07E0051AA01 /* SearchScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AD270B29DDB07E0051AA01 /* SearchScreenManager.swift */; };
+		D3AD271529E02CFA0051AA01 /* MovieDetailScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AD271429E02CFA0051AA01 /* MovieDetailScreenManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +101,11 @@
 		D37DA6FD2902B40900618796 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		D37DA725290316ED00618796 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		D37DA726290316ED00618796 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
+		D3AD270229CC5E440051AA01 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		D3AD270429CC5E520051AA01 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D3AD270929CC6E210051AA01 /* HomeScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenManager.swift; sourceTree = "<group>"; };
+		D3AD270B29DDB07E0051AA01 /* SearchScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenManager.swift; sourceTree = "<group>"; };
+		D3AD271429E02CFA0051AA01 /* MovieDetailScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailScreenManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,9 +164,9 @@
 		046BC658293A11AB008492F7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				046BC65C293A1227008492F7 /* Cells */,
 				0412058F29362F1B00FB4303 /* MoviesTabViewModel.swift */,
 				D369930428C5D24D00A6E68E /* MoviesTabViewController.swift */,
+				046BC65C293A1227008492F7 /* Cells */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -239,6 +249,7 @@
 		D36992DF28C5111600A6E68E /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD270129CC5CC60051AA01 /* Network */,
 				046BC654293A1178008492F7 /* Scenes */,
 				D36992F728C5115300A6E68E /* Models */,
 				D36992F828C5115C00A6E68E /* Views */,
@@ -287,6 +298,42 @@
 				D36992E228C5111600A6E68E /* SceneDelegate.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3AD270129CC5CC60051AA01 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD270229CC5E440051AA01 /* NetworkHelper.swift */,
+				D3AD270429CC5E520051AA01 /* NetworkManager.swift */,
+				D3AD270729CC6CEE0051AA01 /* Search */,
+				D3AD270629CC6C280051AA01 /* Home */,
+				D3AD271329E02CCB0051AA01 /* MovieDetail */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D3AD270629CC6C280051AA01 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD270929CC6E210051AA01 /* HomeScreenManager.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D3AD270729CC6CEE0051AA01 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD270B29DDB07E0051AA01 /* SearchScreenManager.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		D3AD271329E02CCB0051AA01 /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD271429E02CFA0051AA01 /* MovieDetailScreenManager.swift */,
+			);
+			path = MovieDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,11 +428,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AD270329CC5E440051AA01 /* NetworkHelper.swift in Sources */,
+				D3AD270C29DDB07E0051AA01 /* SearchScreenManager.swift in Sources */,
 				D369930128C51F6100A6E68E /* LoginViewController.swift in Sources */,
 				D339CB31290945D70015DE32 /* CastnMoviesCollectionViewCell.swift in Sources */,
 				D36992E528C5111600A6E68E /* WelcomeViewController.swift in Sources */,
 				0412059029362F1B00FB4303 /* MoviesTabViewModel.swift in Sources */,
 				D36AA8A028E8941F0037A04E /* MyCollectionViewCell.swift in Sources */,
+				D3AD271529E02CFA0051AA01 /* MovieDetailScreenManager.swift in Sources */,
 				D36AA89928E84D5F0037A04E /* MovieDataModel.swift in Sources */,
 				D36992FF28C51E6400A6E68E /* RegisterViewController.swift in Sources */,
 				D36992E128C5111600A6E68E /* AppDelegate.swift in Sources */,
@@ -394,6 +444,8 @@
 				D339CB2D290945250015DE32 /* CastCell.swift in Sources */,
 				D36992EB28C5111600A6E68E /* MovieApp.xcdatamodeld in Sources */,
 				D36AA8AA28E897B30037A04E /* TopCarouselTableViewCell.swift in Sources */,
+				D3AD270A29CC6E210051AA01 /* HomeScreenManager.swift in Sources */,
+				D3AD270529CC5E520051AA01 /* NetworkManager.swift in Sources */,
 				D36992E328C5111600A6E68E /* SceneDelegate.swift in Sources */,
 				D339CB35290BFF0D0015DE32 /* RecommendedCell.swift in Sources */,
 				D36AA8A628E897990037A04E /* MyTableViewCell.swift in Sources */,

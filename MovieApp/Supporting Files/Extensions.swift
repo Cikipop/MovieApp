@@ -37,3 +37,10 @@ extension UIViewController {
 }
 
 
+//    public var movieId: Int
+//
+//    public init(movieId: Int) {
+//        self.movieId = movieId
+//
+//    }
+//

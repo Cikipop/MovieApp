@@ -25,6 +25,7 @@ class TopCarouselTableViewCell: UITableViewCell {
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
         myCollectionView.register(UINib(nibName: "MyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyCollectionViewCell")
+        myCollectionView.isPagingEnabled = true
     }
 }
 
@@ -48,11 +49,15 @@ extension TopCarouselTableViewCell: UICollectionViewDelegate , UICollectionViewD
         onTapNowPlayingMovie?(nowPlayingMovies[indexPath.row].id ?? 0)
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 0
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let cWidth = collectionView.frame.size.width
-        let cHeight = collectionView.frame.size.height
-        return CGSize(width: cWidth, height: cHeight)
+        let frameSize = collectionView.frame.size
+        return CGSize(width: frameSize.width, height: frameSize.height)
     }
 }
 

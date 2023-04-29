@@ -11,9 +11,10 @@ class RecommendedCell: UITableViewCell {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    var recommendedMoviesArray: [AllMovies]?
+//    var recommendedMoviesArray: [AllMovies]?
 //    var onTapRecommendedMovie: ((Int) -> Void)? = nil
     var delegate: RecommendedCellDelegate? = nil
+    var recommendedMoviesArray = [AllMovies]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,24 +31,24 @@ class RecommendedCell: UITableViewCell {
 
 extension RecommendedCell: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recommendedMoviesArray?.count ?? 0
+        return recommendedMoviesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "Cell",
             for: indexPath
-        ) as? CastnMoviesCollectionViewCell,
-              let item = recommendedMoviesArray?[indexPath.row] else {
-            return UICollectionViewCell()
-        }
+        ) as? CastnMoviesCollectionViewCell else { return UICollectionViewCell() }
+              let item = recommendedMoviesArray[indexPath.row]
+        
         cell.prepareRecommendedCell(item)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let movieId = recommendedMoviesArray?[indexPath.row].id else { return }
+        guard let movieId = recommendedMoviesArray[indexPath.row].id else { return }
 //        onTapRecommendedMovie?(movieId)
+        
         delegate?.onTapRecommended(id: movieId)
     }
 }

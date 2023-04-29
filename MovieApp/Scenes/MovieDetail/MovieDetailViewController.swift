@@ -8,22 +8,25 @@
 import UIKit
 import Kingfisher
 import Cosmos
+import SwiftUI
 
 class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var detailTableView: UITableView!
     
-    var detailedMovieInfo: MovieDetails?
-    var credits: [AllCast]? = nil
-    var similarMovies: [AllMovies]? = nil
+    var detailedMovie: MovieDetails?
+
+  
+    var viewModel = MovieDetailViewModel()
     
-    var viewModel: MovieDetailViewModel? = nil
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         tableViewData()
         fetchMovieDetail()
+       
+      
     }
     
     deinit {
@@ -32,35 +35,62 @@ class MovieDetailViewController: UIViewController {
     }
     
     func fetchMovieDetail() {
-        let group = DispatchGroup()
         
-        guard let viewModel = viewModel else {
-            return
-        }
-        group.enter()
-        viewModel.getMovieDetail { [weak self] data in
-            guard let self = self else { return }
-            self.detailedMovieInfo = data
-            group.leave()
-        }
-        group.enter()
-        viewModel.getCredits { [weak self] credits in
-            guard let self = self else { return }
-            self.credits = credits
-            group.leave()
-        }
-        group.enter()
-        viewModel.getSimilarMovies { [weak self] similarMovies in
-            guard let self = self else { return }
-            self.similarMovies = similarMovies
-            group.leave()
+        viewModel.getMovieDetails { errorMessage in
+            if let errorMessage = errorMessage {
+                
+                print("\(errorMessage)")
+            }
         }
         
-        group.notify(queue: .main) { [weak self] in
-            guard let self = self else { return }
-            self.detailTableView.reloadData()
+        viewModel.getSimilarMovies { errorMessage in
+            if let errorMessage = errorMessage {
+                
+                print("\(errorMessage)")
+            }
         }
+        
+        viewModel.getMovieCast { errorMessage in
+            if let errorMessage = errorMessage {
+                
+                print("\(errorMessage)")
+            }
+        }
+        
     }
+    
+    
+    
+//    func fetchMovieDetail() {
+//        let group = DispatchGroup()
+//        
+//        guard let viewModel = viewModel else {
+//            return
+//        }
+//        group.enter()
+//        viewModel.getMovieDetail { [weak self] data in
+//            guard let self = self else { return }
+//            self.detailedMovieInfo = data
+//            group.leave()
+//        }
+//        group.enter()
+//        viewModel.getCredits { [weak self] credits in
+//            guard let self = self else { return }
+//            self.credits = credits
+//            group.leave()
+//        }
+//        group.enter()
+//        viewModel.getSimilarMovies { [weak self] similarMovies in
+//            guard let self = self else { return }
+//            self.similarMovies = similarMovies
+//            group.leave()
+//        }
+//        
+//        group.notify(queue: .main) { [weak self] in
+//            guard let self = self else { return }
+//            self.detailTableView.reloadData()
+//        }
+//    }
     
     func tableViewData() {
         detailTableView.dataSource = self
@@ -73,13 +103,15 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func reloadDetail(with movieId: Int) {
-        viewModel?.movieId = movieId
-        fetchMovieDetail()
-//        guard let vc = storyboard?.instantiateViewController(
-//                withIdentifier:"MovieDetailViewController"
-//            ) as? MovieDetailViewController else { return }
-//        vc.viewModel = MovieDetailViewModel(movieId: movieId)
-//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+       guard let vc = storyboard?.instantiateViewController(
+               withIdentifier:"MovieDetailViewController"
+           ) as? MovieDetailViewController else { return }
+//        MovieDetailScreeManager.shared.movieId = movieId
+        
+        
+       self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -95,7 +127,10 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = detailedMovieInfo else { return UITableViewCell() }
+        
+        let item = viewModel.detailedMovieInfo
+       
+        
         
         switch indexPath.section {
         case 0:
@@ -104,6 +139,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
                 for: indexPath
             ) as? InfoTableViewCell else { return UITableViewCell() }
             cell.prepareDetailCell(item)
+            
             return cell
             
         case 1:
@@ -119,7 +155,9 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
                 withIdentifier: "CastCell",
                 for: indexPath
             ) as? CastCell else { return UITableViewCell() }
-            cell.credits = credits ?? []
+            cell.credits = viewModel.credits
+            
+            cell.myCollectionView.reloadData()
             return cell
             
         case 3:
@@ -131,7 +169,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
 //                self?.navigateToDetail(with: movieId)
 //            }
             cell.delegate = self
-            cell.recommendedMoviesArray = similarMovies
+            cell.recommendedMoviesArray = viewModel.similarMovies
+            cell.myCollectionView.reloadData()
             return cell
         default: return UITableViewCell()
         }
@@ -169,7 +208,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
 }
 extension MovieDetailViewController: RecommendedCellDelegate {
     func onTapRecommended(id: Int) {
-        reloadDetail(with: id)
+        reloadDetail(with: viewModel.detailedMovieInfo.id ?? 0)
+        
     }
     
     

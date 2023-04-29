@@ -29,7 +29,7 @@ class MyTableViewCell: UITableViewCell {
         movieRate.text = "\(item.vote_average ?? 0.0)"
         
         if let posterPath = item.poster_path,
-           let baseUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")") {
+           let baseUrl = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath ?? "")") {
             movieImage.kf.indicatorType = .activity
             movieImage.kf.setImage(with: baseUrl)
         }

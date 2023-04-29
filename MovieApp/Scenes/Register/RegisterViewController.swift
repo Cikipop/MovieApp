@@ -52,7 +52,7 @@ class RegisterViewController: UIViewController {
               let pass = passwordText.text,
               let confirm = confirmPasstext.text,
               pass == confirm else {
-            showAlertDialog(with: "jahjkdh")
+            showAlertDialog(with: "passwords are not the same")
             return
         }
         

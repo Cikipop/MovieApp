@@ -23,8 +23,18 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
         tableViewData()
         configureSearchController()
         
-        viewModel.fetchMovies { [weak self] _ in
-            self?.reloadTableView()
+        viewModel.getMovies { errorMessage in
+            if let errorMessage = errorMessage {
+                
+                print("\(errorMessage)")
+            }
+            DispatchQueue.main.async {
+                self.mySearchTableView.reloadData()
+            }
+        
+        
+//        viewModel.fetchMovies { [weak self] _ in
+//            self?.reloadTableView()
         }
     }
     
@@ -39,8 +49,8 @@ class SearchTabViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     func configureSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
+//        searchController.searchResultsUpdater = self
+//        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         self.tabBarController?.navigationItem.hidesSearchBarWhenScrolling = false
         mySearchTableView.tableHeaderView = searchController.searchBar
@@ -92,7 +102,7 @@ extension SearchTabViewController: UITableViewDelegate, UITableViewDataSource {
         guard let vc = storyboard?.instantiateViewController(
             withIdentifier: "MovieDetailViewController"
         ) as? MovieDetailViewController else { return }
-        vc.viewModel = MovieDetailViewModel(movieId: item.id ?? 0)
+//        MovieDetailScreeManager.shared.movieId = item.id ?? 0
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -104,20 +114,20 @@ extension SearchTabViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: Search Bar Delegates
 
-extension SearchTabViewController: UISearchBarDelegate, UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else {
-            viewModel.fetchMovies { [weak self] _ in
-                self?.reloadTableView()
-            }
-            return
-        }
-        viewModel.fetchMovies(with: searchText) { [weak self] searchedMovies in
-            self?.reloadTableView()
-        }
-    }
-}
+//extension SearchTabViewController: UISearchBarDelegate, UISearchResultsUpdating {
+//
+//    func updateSearchResults(for searchController: UISearchController) {
+//        guard let searchText = searchController.searchBar.text else {
+//            viewModel.fetchMovies { [weak self] _ in
+//                self?.reloadTableView()
+//            }
+//            return
+//        }
+//        viewModel.fetchMovies(with: searchText) { [weak self] searchedMovies in
+//            self?.reloadTableView()
+//        }
+//    }
+//}
 
 
 
